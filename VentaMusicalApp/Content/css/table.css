@@ -1,0 +1,108 @@
+﻿#table-data_wrapper{
+    width: 100%;
+}
+/*.table-data {
+    max-width: 1200px;
+    display: block;
+}*/
+#table-data {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+div.dt-container .dt-search input {
+    border-radius: 50px;
+    background-color: #2A2A2A;
+    border-color:  #2A2A2A;
+}
+div.dt-container select.dt-input {
+    border-radius: 50px;
+    background-color: #2A2A2A;
+    border-color: #2A2A2A;
+}
+div.dt-container .dt-paging .dt-paging-button {
+    border-radius: 50px;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled{
+    color: white !important;
+}
+
+
+    table.dataTable {
+        border-collapse: collapse;
+    }
+
+    table.dataTable thead {
+        background-color: #444;
+        color: #fff;
+    }
+
+        table.dataTable thead th {
+            border-bottom: 2px solid #555;
+        }
+
+    table.dataTable tbody {
+        background-color: #333;
+        color: #fff;
+    }
+
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #3c3c3c;
+        }
+
+        table.dataTable tbody tr:hover {
+            background-color: #555;
+        }
+
+        table.dataTable tbody td,
+        table.dataTable thead th {
+            padding: 8px;
+            border: 1px solid #555;
+        }
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #ddd !important;
+    background-color: #444 !important;
+    border: 1px solid #555;
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        color: #fff !important;
+        background-color: #666 !important;
+        border: 1px solid #777;
+    }
+
+.dataTables_wrapper .dataTables_filter input {
+    background-color: #444;
+    border: 1px solid #555;
+    color: #ddd;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    background-color: #444;
+    border: 1px solid #555;
+    color: #ddd;
+}
+
+.dataTables_wrapper .dataTables_info {
+    color: #ddd;
+}
+
+tr {
+    height: 7vh;
+}
+
+table.dataTable tbody td, table.dataTable thead th {
+    border: 0px;
+}
+
+.table-container{
+    padding-top: 1vh;
+}
+
+.dt-layout-row {
+    color: white;
+}

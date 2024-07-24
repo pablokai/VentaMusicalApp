@@ -1,0 +1,99 @@
+﻿@model VentaMusical.Model.CancionAgregar
+
+<link rel="stylesheet" href="~/Content/css/cruds.css" />
+
+@if (ViewBag.ValorMensaje == 1)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #121212;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Mensaje</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Cancion/Index/")'">
+                    Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #121212;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Mensaje</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Cancion/Index/")'">
+                    Cerrar
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("Create", "Cancion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="title-group">
+            <a class="btn-back" onclick="document.location.href='@Url.Content("~/Cancion/Index/")'"><i class="fa-solid fa-chevron-left"></i>Volver</a>
+            <h1>Agregar Canción</h1>
+        </div>
+
+        <hr class="divider" />   
+        <br/>
+
+            @Html.LabelFor(u => u.CodigoGenero, new { @class = "label-form"})
+            @Html.DropDownList(
+            "CodigoGenero",
+            (List<SelectListItem>)ViewBag.Generos,
+            "Elige un género",
+            new { @class = "select-input-form"})              
+            @Html.ValidationMessageFor(u => u.CodigoGenero)
+            <br />
+            @Html.LabelFor(u => u.NombreCancion, new { @class = "label-form"})
+            @Html.TextBoxFor(u => u.NombreCancion, new { @class = "input-data-form" })
+            @Html.ValidationMessageFor(u => u.NombreCancion)
+            <br />
+            @Html.LabelFor(u => u.Precio, new { @class = "label-form"})
+            @Html.TextBoxFor(u => u.Precio, new { @class = "input-data-form", @type = "number" })
+            @Html.ValidationMessageFor(u => u.Precio)
+
+            <label for="images" class="drop-container" id="dropcontainer">
+                <img src="~/Content/images/subir-documento.png"class="image-upload"/>
+                @Html.TextBoxFor(u => u.Archivo, new { @class = "fileuploader", @type="file" , @id="images"})
+            </label>
+            @Html.ValidationMessageFor(u => u.Archivo)
+            <br />
+
+        <div class="btn-group-container ">
+            <input class="btn-add" type="submit" value="Agregar" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#myModal').modal('show');
+
+
+    });
+</script>
+
+

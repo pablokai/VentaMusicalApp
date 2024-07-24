@@ -1,0 +1,189 @@
+﻿.mainscreen {
+    min-height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #963E7B;
+}
+
+.card {
+    width: 60rem;
+    margin: 0 auto;
+    align-self: center;
+    border-radius: 1.5rem;
+/*    box-shadow: 4px 3px 20px #1a5bed;
+*/    display: flex;
+    flex-direction: row;
+    border-color: transparent !important;
+}
+
+.leftside {
+    background: rgb(18,18,18, 2);
+    width: 25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+    .leftside h1 {
+        color: white;
+    }
+
+
+.card-icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+
+}
+
+    .card-icons i {
+        color: white;
+    }
+
+   
+
+.product {
+    object-fit: cover;
+    width: 20em;
+    height: 20em;
+    border-radius: 100%;
+}
+
+.rightside {
+    background-color: #121212;
+    width: 35rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    padding: 2rem 2rem 3rem 3rem;
+}
+
+    .rightside h2 {
+        color: #b3b3b3;
+        padding: 1vh 1vw;
+    }
+
+p {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: .8rem 0;
+}
+
+.inputbox {
+    color: #030303;
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1.5px solid #ccc;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    font-family: 'Roboto', sans-serif;
+    color: #615a5a;
+    font-size: 1.1rem;
+    font-weight: 500;
+    outline: none;
+}
+
+.expcvv {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.6rem;
+}
+
+.expcvv_text {
+    padding-right: 1rem;
+}
+
+.expcvv_text2 {
+    padding: 0 1rem;
+}
+
+.button {
+    background: #1a5bed;
+    padding: 10px;
+    border: solid #1a5bed;
+    border-radius: 50px;
+    color: white;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    width: 100%;
+}
+
+    .button:hover {
+        background: #132347;
+        border: solid #1a5bed;
+    }
+
+.label-form {
+    font-weight: 500;
+    color: #b3b3b3;
+    display: block;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
+}
+
+.input-data-form {
+    background-color: #212121;
+    border-radius: 25px;
+    border: solid #212121 1px;
+    height: 4vh;
+    padding: 2vh;
+    width: 100%;
+    margin-bottom: 2vh;
+}
+
+.select-input-form {
+    background-color: #212121;
+    border-radius: 25px;
+    border: solid #212121 1px;
+    height: 5vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    width: 100%;
+    color: #b3b3b3;
+    cursor: pointer;
+    margin-bottom: 2vh;
+}
+
+.details-group {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.6rem;
+    margin-bottom: 1vh;
+    align-items: center;
+}
+
+.details-group label{
+   margin-right: 1vw;
+}
+
+
+
+
+@media only screen and (max-width: 1000px) {
+    .card {
+        flex-direction: column;
+        width: auto;
+    }
+
+    .leftside {
+        width: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0;
+        border-radius: 0;
+    }
+
+    .rightside {
+        width: auto;
+        border-bottom-left-radius: 1.5rem;
+        padding: 0.5rem 3rem 3rem 2rem;
+        border-radius: 0;
+    }
+}

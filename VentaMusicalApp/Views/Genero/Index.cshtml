@@ -1,0 +1,59 @@
+﻿@model List<VentaMusical.Model.Genero>
+
+
+<div class="title">
+    <h1>Géneros</h1>
+    <div class="btn-container">
+        <a class="btn-add" onclick="document.location.href='@Url.Content("~/Genero/Create/")'">Agregar<i class="fa-solid fa-plus"></i></a>
+    </div>
+</div>
+<hr class="divider" />
+
+<div class="table-container">
+    <table id="table-data" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Codigo Género</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fila in Model)
+            {
+                <tr>
+                    <td>@fila.CodigoGenero</td>
+                    <td>@fila.Descripcion</td>
+                    <td>
+                        <a class="btn-edit" onclick="document.location.href='@Url.Content("~/Genero/Edit/" + fila.CodigoGenero)'">Editar<i class="fa-solid fa-pencil"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<link rel="stylesheet" href="~/Content/css/table.css"/>
+<link rel="stylesheet" href="~/Content/css/cruds.css" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $('#table-data').DataTable({
+            responsive: true,
+            language: {
+                info: 'Mostrando página _PAGE_ de _PAGES_',
+                infoEmpty: 'No hay registros',
+                lengthMenu: 'Mostrar _MENU_ registros por página',
+                zeroRecords: 'No hay registros',
+                search: 'Buscar'
+            },
+            pageLength: 5,
+            lengthMenu: [5, 10, 20, 50],
+            columns: [{ width: '10%' }, null, { width: '10%' }]
+        });
+
+    });
+</script>

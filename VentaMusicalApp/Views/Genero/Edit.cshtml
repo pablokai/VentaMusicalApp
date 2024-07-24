@@ -1,0 +1,77 @@
+﻿@model VentaMusical.Model.GeneroEditar
+
+@if (ViewBag.ValorMensaje == 1)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #121212;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Mensaje</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Genero/Index/")'">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #121212;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Mensaje</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Genero/Index/")'">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("Edit", "Genero", FormMethod.Post))
+{
+    <div class="row">
+
+        <div class="title-group">
+            <a class="btn-back" onclick="document.location.href='@Url.Content("~/Genero/Index/")'"><i class="fa-solid fa-chevron-left"></i>Volver</a>
+            <h1>Editar Género</h1>
+        </div>
+        <hr class="divider" />
+        <br />
+        @Html.HiddenFor(u => u.CodigoGenero)
+        @Html.LabelFor(u => u.Descripcion, new { @class = "label-form"})
+        @Html.TextBoxFor(u => u.Descripcion, new { @class = "input-data-form" })
+        @Html.ValidationMessageFor(u => u.Descripcion)
+        <br />
+        <div class="btn-group-container ">
+            <input class="btn-add" type="submit" value="Editar" />
+        </div>
+    </div>
+}
+
+<link rel="stylesheet" href="~/Content/css/cruds.css"/>
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myModal').modal('show');
+        });
+    </script>
+}

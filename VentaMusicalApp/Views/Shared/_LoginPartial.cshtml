@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <input type="checkbox" id="check">
+        <header>
+            <label for="check">
+                <i class="fa-solid fa-bars" id="sidebar_btn"></i>
+            </label>
+            <div class="left_area">
+            </div>
+            <div class="right_area">
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="logout_btn">Cerrar Sesión</a>
+            </div>
+        </header>
+        <!--mobile -->
+        <div class="mobile_nav">
+            <div class="nav_bar">
+                <img src="~/Content/images/nota-musical.png" class="mobile_profile_image" alt="">
+                <i class="fa fa-bars nav_btn"></i>
+            </div>
+            <div class="mobile_nav_items">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+                <a asp-controller="Genero" asp-action="Index"><i class="fa-solid fa-guitar"></i><span>Géneros</span></a>
+                <a asp-controller="Cancion" asp-action="Index"><i class="fa-solid fa-music"></i><span>Canciones</span></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i><span>Ventas</span></a>
+                <a href="#"><i class="fa-solid fa-gear"></i><span>Ajustes</span></a>
+            </div>
+        </div>
+        <!--desktop -->
+        <div class="sidebar">
+            <div class="profile_info">
+                <img src="~/Content/images/nota-musical.png" class="profile_image" alt="">
+                <h3>Venta Musical</h3>
+            </div>
+            <ul>
+                <li class="item">
+                    <i class="fa-solid fa-house"></i>
+                    @Html.ActionLink("Inicio", "Index", "Welcome")
+                </li>
+                <li class="item">
+                    <i class="fa-solid fa-guitar"></i>
+                    @Html.ActionLink("Genero", "Index", "Genero")
+                </li>
+                <li class="item">
+                    <i class="fa-solid fa-music"></i>
+                    @Html.ActionLink("Cancion", "Index", "Cancion")
+                </li>
+                <li class="item">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+            </ul>
+        </div>
+
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+
+
+}
+else
+{
+<nav class="navbar navbar-expand-lg" id="navbar-adjust">
+    <div class="container-fluid">
+        <img src="~/Content/images/nota-musical.png" class="image-landing" alt="">
+
+        <a class="title-landing" href="#">Venta Musical App</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-landing" aria-current="page" href="#">Inicio</a>
+                </li>
+
+            </ul>
+            <form class="d-flex">
+                <ul>
+                    <li class="landing-button-white">@Html.ActionLink("Ingresar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    
+                </ul>
+                <ul>
+                    <li class="landing-button">@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+
+}
+
+
+<link rel="stylesheet" href="~/Content/css/layout.css" />
