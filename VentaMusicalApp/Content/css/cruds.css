@@ -1,4 +1,8 @@
-﻿.btn-add {
+﻿hr {
+    color: #b3b3b3;
+}
+
+.btn-add {
     padding: 10px 30px;
     background: #1a5bed;
     text-decoration: none;
@@ -149,6 +153,7 @@ i{
     height: 4vh;
     padding: 2vh;
     width: 30%;
+    color: #b3b3b3;
 }
 
 .select-input-form {

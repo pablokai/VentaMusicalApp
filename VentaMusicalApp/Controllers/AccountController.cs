@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -8,21 +9,25 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using VentaMusical.BusinessLogic;
+using VentaMusical.Model;
 using VentaMusicalApp.Models;
 
 namespace VentaMusicalApp.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly UsuarioBL usuarioBL;
 
         public AccountController()
         {
+            usuarioBL = new UsuarioBL();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -137,8 +142,10 @@ namespace VentaMusicalApp.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public async Task<ActionResult> Register()
         {
+            ViewBag.TipoTarjeta = await ObtenerTipoTarjeta();
+            ViewBag.Generos = await ObtenerGenerosUsuarios();
             return View();
         }
 
@@ -149,12 +156,18 @@ namespace VentaMusicalApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            ViewBag.TipoTarjeta = await ObtenerTipoTarjeta();
+            ViewBag.Generos = await ObtenerGenerosUsuarios();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, NumeroIdentificacion= model.NumeroIdentificacion, PrimerNombre = model.PrimerNombre
+                , SegundoNombre = model.SegundoNombre, PrimerApellido = model.PrimerNombre, SegundoApellido= model.SegundoApellido, Genero = model.Genero,
+                IdTipoTarjeta = model.IdTipoTarjeta, NumeroTarjeta = model.NumeroTarjeta};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "User");
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -171,6 +184,49 @@ namespace VentaMusicalApp.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        public async Task<List<SelectListItem>> ObtenerTipoTarjeta()
+        {
+            List<TipoTarjeta> respuesta = await usuarioBL.ListarTipoTarjeta();
+
+            if (respuesta != null)
+            {
+                List<SelectListItem> dropdown = respuesta.Select(x => new SelectListItem
+                {
+                    Text = x.Nombre,
+                    Value = x.IdTipoTarjeta.ToString(),
+                }).ToList();
+
+                return dropdown;
+            }
+
+            return new List<SelectListItem>();
+
+
+        }
+
+        public async Task<List<SelectListItem>> ObtenerGenerosUsuarios()
+        {
+
+
+            List<SelectListItem> dropdown = new List<SelectListItem>(){
+                new SelectListItem
+                {
+                    Text = "Masculino",
+                    Value =  "Masculino",
+                },
+                 new SelectListItem
+                 {
+                     Text = "Femenino",
+                     Value =  "Femenino",
+                 }
+                };
+
+            return dropdown;
+
+
+        }
+
 
         //
         // GET: /Account/ConfirmEmail
