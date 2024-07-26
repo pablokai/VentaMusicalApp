@@ -1,20 +1,64 @@
 ﻿@model VentaMusicalApp.Models.ChangePasswordViewModel
-@{
-    ViewBag.Title = "Change Password";
+
+@if (ViewBag.ValorMensaje == 1)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #121212;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Mensaje</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #121212;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Mensaje</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("ChangePassword", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "Usuario", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    <h4>Change Password Form</h4>
-    <hr />
+<div class="row">
+
+    <div class="title-group">
+        <a class="btn-back" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'"><i class="fa-solid fa-chevron-left"></i>Volver</a>
+        <h1>Editar Usuario</h1>
+    </div>
+    <hr class="divider" />
+    <br />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.NumeroIdentificacion, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.NumeroIdentificacion, new { @class = "form-control", @id = "numeroIdentificacion" })
+            @Html.TextBoxFor(m => m.NumeroIdentificacion, new { @class = "form-control", @id = "numeroIdentificacion", @readonly = "readonly"})
         </div>
     </div>
     <div class="form-group">
@@ -22,7 +66,8 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.PrimerNombre, new { @class = "form-control" })
         </div>
-    </div><div class="form-group">
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.SegundoNombre, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.SegundoNombre, new { @class = "form-control" })
@@ -69,14 +114,6 @@
         </div>
     </div>
 
-    @Html.LabelFor(u => u.Rol, new { @class = "label-form" })
-    @Html.DropDownList(
-    "Rol",
-    (List<SelectListItem>)ViewBag.Roles,
-    "Elige un rol",
-    new { @class = "select-input-form" })
-    @Html.ValidationMessageFor(u => u.Rol)
-    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.OldPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -84,9 +121,9 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.NewPassword, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -95,12 +132,22 @@
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Change password" class="btn btn-default" />
-        </div>
+    <br />
+    <div class="btn-group-container ">
+        <input class="btn-add" type="submit" value="Editar" />
     </div>
+</div>
 }
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
+<link rel="stylesheet" href="~/Content/css/cruds.css" />
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myModal').modal('show');
+            $("#numeroTarjeta").inputmask({ "mask": "9999 9999 9999 9999" });
+        });
+
+    </script>
 }

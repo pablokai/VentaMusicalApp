@@ -233,10 +233,24 @@
     <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\WelcomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202407230425455_InitialCreate.cs" />
+    <Compile Include="Migrations\202407230425455_InitialCreate.Designer.cs">
+      <DependentUpon>202407230425455_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407251758062_AddNombreApellidosToApplicationUser.cs" />
+    <Compile Include="Migrations\202407251758062_AddNombreApellidosToApplicationUser.Designer.cs">
+      <DependentUpon>202407251758062_AddNombreApellidosToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407252141511_AddNombreApellidosToApplicationUser3.cs" />
+    <Compile Include="Migrations\202407252141511_AddNombreApellidosToApplicationUser3.Designer.cs">
+      <DependentUpon>202407252141511_AddNombreApellidosToApplicationUser3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -324,6 +338,8 @@
     <Content Include="Views\Cancion\Edit.cshtml" />
     <Content Include="Views\Cancion\Index.cshtml" />
     <Content Include="Views\Welcome\Index.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,6 +370,17 @@
       <Project>{A9A8BF34-B80E-41D5-BBAF-AAD4194B3A2E}</Project>
       <Name>VentaMusical.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202407230425455_InitialCreate.resx">
+      <DependentUpon>202407230425455_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407251758062_AddNombreApellidosToApplicationUser.resx">
+      <DependentUpon>202407251758062_AddNombreApellidosToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407252141511_AddNombreApellidosToApplicationUser3.resx">
+      <DependentUpon>202407252141511_AddNombreApellidosToApplicationUser3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,68 @@
+﻿
+@model List<VentaMusical.Model.Usuario>
+
+
+<div class="title">
+    <h1>Usuarios</h1>
+    <div class="btn-container">
+       
+    </div>
+</div>
+<hr class="divider" />
+
+<div class="table-container">
+    <table id="table-data" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Identificación</th>
+                <th>Nombre</th>
+                <th>Género</th>
+                <th>Correo Electronico</th>
+                <th>Tipo Tarjeta </th>
+                <th>Rol </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fila in Model)
+            {
+            <tr>
+                <td>@fila.NumeroIdentificacion</td>
+                <td>@fila.PrimerNombre  @fila.PrimerApellido</td>
+                <td>@fila.Genero</td>
+                <td>@fila.Email </td>
+                <td>@fila.NombreTarjeta</td>
+                <td>@fila.Rol</td>
+                <td>
+                    <a class="btn-edit" onclick="document.location.href='@Url.Content("~/Usuario/Edit/" + fila.Id)'">Editar<i class="fa-solid fa-pencil"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<link rel="stylesheet" href="~/Content/css/table.css" />
+<link rel="stylesheet" href="~/Content/css/cruds.css" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $('#table-data').DataTable({
+            responsive: true,
+            language: {
+                info: 'Mostrando página _PAGE_ de _PAGES_',
+                infoEmpty: 'No hay registros',
+                lengthMenu: 'Mostrar _MENU_ registros por página',
+                zeroRecords: 'No hay registros',
+                search: 'Buscar'
+            },
+            pageLength: 5,
+            lengthMenu: [5, 10, 20, 50],
+            columns: [{ width: '10%' }, null, null, null, null, null, { width: '10%' }]
+        });
+
+    });
+</script>
