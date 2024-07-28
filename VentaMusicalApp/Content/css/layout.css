@@ -184,7 +184,7 @@ label #sidebar_btn {
 
 .content {
     width: auto;
-    margin-top: 70px;
+    margin-top: 20px;
     padding: 50px 50px 20px 50px;
     margin-left: 250px;
     margin-right: 20px;
@@ -438,4 +438,8 @@ main{
 
 #navbar-adjust{
     padding: 3vh 5vw 0 5vw;
+}
+
+h2{
+    color: white;
 }
