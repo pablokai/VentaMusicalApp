@@ -23,11 +23,27 @@
                 <i class="fa fa-bars nav_btn"></i>
             </div>
             <div class="mobile_nav_items">
-                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
-                <a asp-controller="Genero" asp-action="Index"><i class="fa-solid fa-guitar"></i><span>Géneros</span></a>
-                <a asp-controller="Cancion" asp-action="Index"><i class="fa-solid fa-music"></i><span>Canciones</span></a>
-                <a href="#"><i class="fa-solid fa-cart-shopping"></i><span>Ventas</span></a>
-                <a href="#"><i class="fa-solid fa-gear"></i><span>Ajustes</span></a>
+                <ul>
+                    <li class="item">
+                        <i class="fa-solid fa-house"></i>
+                        @Html.ActionLink("Inicio", "Index", "Welcome")
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="item">
+                            <i class="fa-solid fa-guitar"></i>
+                            @Html.ActionLink("Genero", "Index", "Genero")
+                        </li>
+                        <li class="item">
+                            <i class="fa-solid fa-music"></i>
+                            @Html.ActionLink("Cancion", "Index", "Cancion")
+                        </li>
+                        <li class="item">
+                            <i class="fa-solid fa-user"></i>
+                            @Html.ActionLink("Usuarios", "Index", "Usuario")
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
         <!--desktop -->
@@ -41,6 +57,7 @@
                     <i class="fa-solid fa-house"></i>
                     @Html.ActionLink("Inicio", "Index", "Welcome")
                 </li>
+                @if (User.IsInRole("Admin")){
                 <li class="item">
                     <i class="fa-solid fa-guitar"></i>
                     @Html.ActionLink("Genero", "Index", "Genero")
@@ -53,6 +70,7 @@
                     <i class="fa-solid fa-user"></i>
                     @Html.ActionLink("Usuarios", "Index", "Usuario")
                 </li>
+                }
             </ul>
         </div>
 

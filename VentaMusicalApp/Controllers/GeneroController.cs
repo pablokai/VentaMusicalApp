@@ -13,6 +13,8 @@ using VentaMusical.Model;
 
 namespace VentaMusicalApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class GeneroController : Controller
     {
             private readonly GeneroBL generoBL;
