@@ -12,6 +12,8 @@ using VentaMusicalApp.Models;
 
 namespace VentaMusicalApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class UsuarioController : Controller
     {
         private readonly UsuarioBL usuarioBL;

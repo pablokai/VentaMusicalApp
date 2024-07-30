@@ -9,6 +9,8 @@ using VentaMusical.Model;
 
 namespace VentaMusicalApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class CancionController : Controller
     {
         private readonly CancionBL cancionBL;

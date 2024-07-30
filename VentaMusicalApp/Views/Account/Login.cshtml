@@ -1,31 +1,30 @@
 ﻿@using VentaMusicalApp.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Iniciar Sesión";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <div class="content-fixer">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="login-container">
+        <div  class="login-content">
             <section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h4>Use a local account to log in.</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 label-form" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "input-data-form" })
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 label-form" })
                         <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "input-data-form" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -39,26 +38,25 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" />
+                            <input type="submit" value="Iniciar Sesión" class="button" />
                         </div>
                     </div>
-                    <p>
-                        @Html.ActionLink("Register as a new user", "Register")
-                    </p>
+                    @*<p class="button-white">
+                        @Html.ActionLink("Registrar un nuevo usuario", "Register")
+                    </p>*@
                     @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
                 }
             </section>
         </div>
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
+        <div>
+            <img src="~/Content/images/music.svg"/>
         </div>
     </div>
-</div>
+    </div>
+<link rel="stylesheet" href="~/Content/css/login.css" />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

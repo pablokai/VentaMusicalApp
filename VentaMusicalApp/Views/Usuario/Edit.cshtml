@@ -53,101 +53,117 @@ else if (ViewBag.ValorMensaje == 0)
         <h1>Editar Usuario</h1>
     </div>
     <hr class="divider" />
-    <br />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.NumeroIdentificacion, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.NumeroIdentificacion, new { @class = "form-control", @id = "numeroIdentificacion", @readonly = "readonly"})
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PrimerNombre, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PrimerNombre, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.SegundoNombre, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.SegundoNombre, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PrimerApellido, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PrimerApellido, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.SegundoApellido, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.SegundoApellido, new { @class = "form-control" })
-        </div>
-    </div>
-    @Html.LabelFor(u => u.Genero, new { @class = "label-form" })
-    @Html.DropDownList(
-    "Genero",
-    (List<SelectListItem>)ViewBag.Generos,
-    "Elige un género",
-    new { @class = "select-input-form" })
-    @Html.ValidationMessageFor(u => u.Genero)
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
+    <div class="login-container">
+        <div class="login-section">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.NumeroIdentificacion, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.NumeroIdentificacion, new { @class = "input-data-form-users", @id = "numeroIdentificacion", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PrimerNombre, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PrimerNombre, new { @class = "input-data-form-users" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SegundoNombre, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.SegundoNombre, new { @class = "input-data-form-users" })
+                </div>
+            </div>
 
-    @Html.LabelFor(u => u.IdTipoTarjeta, new { @class = "label-form" })
-    @Html.DropDownList(
-    "IdTipoTarjeta",
-    (List<SelectListItem>)ViewBag.TipoTarjeta,
-    "Elige un tipo de tarjeta",
-    new { @class = "select-input-form" })
-    @Html.ValidationMessageFor(u => u.IdTipoTarjeta)
+            <div class="form-group">
+                @Html.LabelFor(m => m.PrimerApellido, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PrimerApellido, new { @class = "input-data-form-users" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SegundoApellido, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.SegundoApellido, new { @class = "input-data-form-users" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(u => u.Genero, new { @class = "label-form-users" })
+                <div class="col-md-10">
+                    @Html.DropDownList(
+                      "Genero",
+                      (List<SelectListItem>)ViewBag.Generos,
+                      "Elige un género",
+                      new { @class = "select-input-form-users" })
+                    @Html.ValidationMessageFor(u => u.Genero)
+                </div>
+            </div>
+        </div>
+        <div class="login-section">
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "input-data-form-users" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(u => u.IdTipoTarjeta, new { @class = "label-form-users" })                    
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.NumeroTarjeta, new { @class = "input-data-form-users", @id = "numeroTarjeta" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.NumeroTarjeta, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.NumeroTarjeta, new { @class = "form-control", @id = "numeroTarjeta" })
-        </div>
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.NumeroTarjeta, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.DropDownList(
+                    "IdTipoTarjeta",
+                    (List<SelectListItem>)ViewBag.TipoTarjeta,
+                    "Elige un tipo de tarjeta",
+                    new { @class = "select-input-form-users" })
+                    @Html.ValidationMessageFor(u => u.IdTipoTarjeta)
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.OldPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.OldPassword, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.OldPassword, new { @class = "input-data-form-users" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "input-data-form-users" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 label-form-users" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-data-form-users" })
+                </div>
+            </div>
+
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
+
     </div>
     <br />
     <div class="btn-group-container ">
         <input class="btn-add" type="submit" value="Editar" />
     </div>
 </div>
-}
+    }
 
-<link rel="stylesheet" href="~/Content/css/cruds.css" />
+    <link rel="stylesheet" href="~/Content/css/cruds.css" />
 
 
-@section scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#myModal').modal('show');
-            $("#numeroTarjeta").inputmask({ "mask": "9999 9999 9999 9999" });
-        });
+    @section scripts {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#myModal').modal('show');
+                $("#numeroTarjeta").inputmask({ "mask": "9999 9999 9999 9999" });
+            });
 
-    </script>
-}
+        </script>
+    }
