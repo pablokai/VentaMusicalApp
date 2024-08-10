@@ -92,6 +92,9 @@
     <Compile Include="CancionAgregar.cs" />
     <Compile Include="CancionDetalle.cs" />
     <Compile Include="CancionEditar.cs" />
+    <Compile Include="Compra.cs" />
+    <Compile Include="CompraAgregar.cs" />
+    <Compile Include="CompraDetalle.cs" />
     <Compile Include="DatosTarjeta.cs" />
     <Compile Include="Genero.cs" />
     <Compile Include="GeneroAgregar.cs" />

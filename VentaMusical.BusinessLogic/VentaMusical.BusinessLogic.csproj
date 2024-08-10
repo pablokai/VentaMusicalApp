@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CancionBL.cs" />
+    <Compile Include="CompraBL.cs" />
     <Compile Include="Extensions\Base64Converter.cs" />
     <Compile Include="GeneroBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

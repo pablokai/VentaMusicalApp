@@ -99,9 +99,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CancionDA.cs" />
+    <Compile Include="CompraDA.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="GeneroDA.cs" />
     <Compile Include="Interface\ICancionDA.cs" />
+    <Compile Include="Interface\ICompraDA.cs" />
     <Compile Include="Interface\IConnectionManager.cs" />
     <Compile Include="Interface\IGeneroDA.cs" />
     <Compile Include="Interface\IUsuarioDA.cs" />
