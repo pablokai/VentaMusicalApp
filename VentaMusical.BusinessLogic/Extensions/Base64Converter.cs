@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace VentaMusical.BusinessLogic.Extensions
 {
@@ -22,6 +23,19 @@ namespace VentaMusical.BusinessLogic.Extensions
 
                 return base64String;
             }
+        }
+
+        public string ConvertHttpPostedFileToBase64String(HttpPostedFileBase file)
+        {
+
+            System.IO.Stream fs = file.InputStream;
+            System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
+            Byte[] bytes = br.ReadBytes((int)fs.Length);
+               
+            string base64String = Convert.ToBase64String(bytes);
+
+            return base64String;
+
         }
 
         public string ConvertBase64StringToString(string base64String)

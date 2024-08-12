@@ -12,7 +12,7 @@ using VentaMusicalApp.Models;
 
 namespace VentaMusicalApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, User")]
 
     public class UsuarioController : Controller
     {
@@ -27,6 +27,8 @@ namespace VentaMusicalApp.Controllers
         {
             UserManager = userManager;
         }
+
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Index()
         {
             try
@@ -93,6 +95,7 @@ namespace VentaMusicalApp.Controllers
             }
         }
 
+        
         [HttpPost]
         public async Task<ActionResult> Edit(ChangePasswordViewModel model)
         {

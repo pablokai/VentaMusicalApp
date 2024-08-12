@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Xml.Linq;
 
 namespace VentaMusical.Model
@@ -27,6 +28,6 @@ namespace VentaMusical.Model
 
         [Display(Name = "Portada")]
         [DataType(DataType.Upload)]
-        public IFormFile Archivo { get; set; }
+        public HttpPostedFileBase Archivo { get; set; }
     }
 }

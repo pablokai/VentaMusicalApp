@@ -43,6 +43,13 @@
                             @Html.ActionLink("Usuarios", "Index", "Usuario")
                         </li>
                     }
+                    else
+                    {
+                        <li class="item">
+                            <i class="fa-solid fa-user"></i>
+                            @Html.ActionLink("Perfil", "Edit", "Usuario", new {id = @User.Identity.GetUserId() })
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
@@ -57,19 +64,27 @@
                     <i class="fa-solid fa-house"></i>
                     @Html.ActionLink("Inicio", "Index", "Welcome")
                 </li>
-                @if (User.IsInRole("Admin")){
-                <li class="item">
-                    <i class="fa-solid fa-guitar"></i>
-                    @Html.ActionLink("Genero", "Index", "Genero")
-                </li>
-                <li class="item">
-                    <i class="fa-solid fa-music"></i>
-                    @Html.ActionLink("Cancion", "Index", "Cancion")
-                </li>
-                <li class="item">
-                    <i class="fa-solid fa-user"></i>
-                    @Html.ActionLink("Usuarios", "Index", "Usuario")
-                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="item">
+                        <i class="fa-solid fa-guitar"></i>
+                        @Html.ActionLink("Genero", "Index", "Genero")
+                    </li>
+                    <li class="item">
+                        <i class="fa-solid fa-music"></i>
+                        @Html.ActionLink("Cancion", "Index", "Cancion")
+                    </li>
+                    <li class="item">
+                        <i class="fa-solid fa-user"></i>
+                        @Html.ActionLink("Usuarios", "Index", "Usuario")
+                    </li>
+                }
+                else
+                {
+                    <li class="item">
+                        <i class="fa-solid fa-user"></i>
+                        @Html.ActionLink("Perfil", "Edit", "Usuario", new { id = @User.Identity.GetUserId() }, null)
+                    </li>
                 }
             </ul>
         </div>

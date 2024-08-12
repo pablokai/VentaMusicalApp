@@ -75,7 +75,7 @@ else if (ViewBag.ValorMensaje == 0)
             @Html.ValidationMessageFor(u => u.Precio)
 
             <label for="images" class="drop-container" id="dropcontainer">
-                <img src="~/Content/images/subir-documento.png"class="image-upload"/>
+                <img src="~/Content/images/subir-documento.png" class="image-upload"/>
                 @Html.TextBoxFor(u => u.Archivo, new { @class = "fileuploader", @type="file" , @id="images"})
             </label>
             @Html.ValidationMessageFor(u => u.Archivo)

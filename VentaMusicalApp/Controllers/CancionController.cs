@@ -65,14 +65,14 @@ namespace VentaMusicalApp.Controllers
                     return View(cancion);
                 }
 
-                var conversion = base64Converter.ConvertIFormFileToBase64String(cancion.Archivo);
+                var conversion = base64Converter.ConvertHttpPostedFileToBase64String(cancion.Archivo);
                 var base64 = "data:image/jpeg;base64," + conversion;
                 Cancion nuevaCancion = new Cancion()
                 {
                     CodigoGenero = cancion.CodigoGenero,
                     NombreCancion = cancion.NombreCancion,
                     Precio = cancion.Precio,
-                    Portada = base64,
+                    Portada = "",
                 };
                 var respuesta = await cancionBL.InsertarCancion(nuevaCancion);
 
@@ -140,7 +140,7 @@ namespace VentaMusicalApp.Controllers
                     return View(cancion);
                 }
 
-                var conversion = base64Converter.ConvertIFormFileToBase64String(cancion.Archivo);
+                var conversion = base64Converter.ConvertHttpPostedFileToBase64String(cancion.Archivo);
                 var base64 = "data:image/jpeg;base64," + conversion;
                 Cancion nuevaCancion = new Cancion()
                 {
