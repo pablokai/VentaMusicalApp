@@ -1,0 +1,94 @@
+﻿@model List<VentaMusical.Model.Venta>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #121212;">
+            <div class="modal-header">
+                <h2 class="modal-title">FACTURA</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <H3>Fecha: @ViewBag.FechaFactura</H3>
+                <H3>Consecutivo: @ViewBag.NumFac</H3>
+
+
+                <H3>Facturar a</H3>
+                <H3>Cedula: @ViewBag.Identificacion</H3>
+                <H3>Nombre: @ViewBag.NombreUsuario</H3>
+
+                <div class="table-container">
+                    <table id="table-data" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id de Cancion</th>
+                                <th>Nombre Canción</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var fila in Model)
+                            {
+                                <tr>
+                                    <td>@fila.CodigoCancion</td>
+                                    <td>@fila.NombreCancion</td>
+                                    <td>@fila.Precio</td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <H3>Subtotal: @ViewBag.SubTotal</H3>
+                <H3>Total: @ViewBag.Total</H3>
+
+
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Venta/Venta/")'">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $('#table-data').DataTable({
+            responsive: true,
+            language: {
+                info: 'Mostrando página _PAGE_ de _PAGES_',
+                infoEmpty: 'No hay registros',
+                lengthMenu: 'Mostrar _MENU_ registros por página',
+                zeroRecords: 'No hay registros',
+                search: 'Buscar'
+            },
+            pageLength: 3,
+            lengthMenu: [3,5,10],
+            columns: [{ width: '2px' }, { width: '4%' }, { width: '4%' }]
+        });
+
+        $('.modal-content').css('width', '600px');
+
+
+    });
+</script>
+
+<link rel="stylesheet" href="~/Content/css/table.css" />
+<link rel="stylesheet" href="~/Content/css/cruds.css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#myModal').modal('show');
+
+
+    });
+</script>

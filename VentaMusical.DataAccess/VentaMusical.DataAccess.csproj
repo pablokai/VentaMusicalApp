@@ -107,6 +107,7 @@
     <Compile Include="Interface\IUsuarioDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioDA.cs" />
+    <Compile Include="VentaDA.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VentaMusical.Model\VentaMusical.Model.csproj">

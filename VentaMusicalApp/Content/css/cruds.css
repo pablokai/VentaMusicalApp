@@ -36,6 +36,48 @@
     margin: 1vh;
 }
 
+
+.btn-buy {
+    padding: 10px 20px;
+    background: #1a5bed;
+    text-decoration: none;
+    border-radius: 25px;
+    border: solid #1a5bed;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.5s;
+    transition-property: background;
+    color: white !important;
+    cursor: pointer;
+    margin: 1vh;
+}
+
+    .btn-buy:hover {
+    background: #132347;
+    color: white;
+    }
+
+.btn-fin {
+    padding: 10px 20px;
+    background: #1a5bed;
+    text-decoration: none;
+    border-radius: 25px;
+    border: solid #1a5bed;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.5s;
+    transition-property: background;
+    color: white !important;
+    cursor: pointer;
+    margin: 1vh;
+}
+
+    .btn-fin:hover {
+        background: #132347;
+        color: white;
+    }
+
+
     .btn-edit:hover {
         background: #132347;
         color: white;
