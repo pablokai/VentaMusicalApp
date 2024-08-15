@@ -1,0 +1,97 @@
+﻿@model VentaMusical.Model.DatosTarjeta
+
+
+<div class="mainscreen">
+    <!-- <img src="https://image.freepik.com/free-vector/purple-background-with-neon-frame_52683-34124.jpg"  class="bgimg " alt="">-->
+    <div class="card">
+        <div class="leftside">
+            <h1>Pago con tarjeta</h1>
+
+            <img src="~/Content/images/card-payment.svg"
+                 class="product"
+                 alt="Shoes" />
+            <div class="card-icons">
+                <i class="fa-brands fa-cc-visa fa-4x"></i>
+                <i class="fa-brands fa-cc-mastercard fa-4x"></i>
+            </div>
+        </div>
+        <div class="rightside">
+            @using (Html.BeginForm("PagarTarjeta", "Ventas", FormMethod.Post))
+            {
+                <h2>Datos de la tarjeta</h2>
+
+                @Html.HiddenFor(u => u.TitularTarjeta)
+                @Html.LabelFor(u => u.TitularTarjeta, new { @class = "label-form" })
+                @Html.TextBoxFor(u => u.TitularTarjeta, new { @class = "input-data-form" })
+                @Html.ValidationMessageFor(u => u.TitularTarjeta)
+
+                @Html.HiddenFor(u => u.NumeroTarjeta)
+                @Html.LabelFor(u => u.NumeroTarjeta, new { @class = "label-form" })
+                @Html.TextBoxFor(u => u.NumeroTarjeta, new { @class = "input-data-form", @id = "numeroTarjeta" })
+                @Html.ValidationMessageFor(u => u.NumeroTarjeta)
+
+                @Html.LabelFor(u => u.TipoTarjeta, new { @class = "label-form" })
+                @Html.DropDownList(
+                "TipoTarjeta",
+                new List<SelectListItem>
+                    {
+                    new SelectListItem { Text= "Visa", Value= "Visa"},
+                    new SelectListItem { Text= "MasterCard", Value= "MasterCard"}
+                    },
+                "Seleccione una opción",
+                new { @class = "select-input-form" })
+                @Html.ValidationMessageFor(u => u.TipoTarjeta)
+
+                <div class="details-group">
+                    @Html.HiddenFor(u => u.FechaExpiracion)
+                    @Html.LabelFor(u => u.FechaExpiracion, new { @class = "label-form" })
+                    @Html.TextBoxFor(u => u.FechaExpiracion, new { @class = "input-data-form", @type = "date" })
+                    @Html.ValidationMessageFor(u => u.FechaExpiracion)
+
+                    @Html.HiddenFor(u => u.CVV)
+                    @Html.LabelFor(u => u.CVV, new { @class = "label-form" })
+                    @Html.TextBoxFor(u => u.CVV, new { @class = "input-data-form",  @id = "cvv" })
+                    @Html.ValidationMessageFor(u => u.CVV)
+                </div>
+
+                @*                <p>Titular de la tarjeta</p>
+                    <input type="text" class="inputbox" name="name" required />
+                    <p>Número de tarjeta</p>
+                    <input type="number" class="inputbox" name="card_number" id="card_number" required />
+
+                    <p>Tipo de tarjeta </p>
+                    <select class="inputbox" name="card_type" id="card_type" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="Visa">Visa</option>
+                        <option value="MasterCard">MasterCard</option>
+                    </select>
+                    <div class="expcvv">
+
+                        <p class="expcvv_text">Fecha de expiración</p>
+                        <input type="date" class="inputbox" name="exp_date" id="exp_date" required />
+
+                        <p class="expcvv_text2">CVV</p>
+                        <input type="password" class="inputbox" name="cvv" id="cvv" required />
+                    </div>*@
+
+
+                <button type="submit" class="button">Pagar</button>
+            }
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/Content/css/cardpayment.css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#numeroTarjeta").inputmask({ "mask": "9999 9999 9999 9999" });
+        $("#cvv").inputmask({ "mask": "999" });
+
+
+    });
+</script>
+
+
+
