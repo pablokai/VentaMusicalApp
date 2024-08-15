@@ -51,6 +51,11 @@
                         </li>
                     }
                 </ul>
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+                <a asp-controller="Genero" asp-action="Index"><i class="fa-solid fa-guitar"></i><span>Géneros</span></a>
+                <a asp-controller="Cancion" asp-action="Index"><i class="fa-solid fa-music"></i><span>Canciones</span></a>
+                <a asp-controller="Venta" asp-action="Venta"><i class="fa-solid fa-cart-shopping"></i><span>Comrpar</span></a>
+                <a href="#"><i class="fa-solid fa-gear"></i><span>Ajustes</span></a>
             </div>
         </div>
         <!--desktop -->
@@ -86,6 +91,10 @@
                         @Html.ActionLink("Perfil", "Edit", "Usuario", new { id = @User.Identity.GetUserId() }, null)
                     </li>
                 }
+                <li class="item">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    @Html.ActionLink("Comprar", "Venta", "Venta")
+                </li>
             </ul>
         </div>
 

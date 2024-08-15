@@ -1,0 +1,137 @@
+﻿@model List<VentaMusical.Model.Cancion>
+
+
+<div class="title">
+    <h1>Canciones</h1>
+    <div class="btn-container">
+        <button class="btn-fin" id="finalize-purchase">Finalizar Compra</button>
+    </div>
+</div>
+<hr class="divider" />
+
+<div class="table-container">
+    <table id="table-data" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre Canción</th>
+                <th>Nombre Género</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fila in Model)
+            {
+                <tr>
+                    <td>@fila.CodigoCancion</td>
+                    <td>
+                        @if (@fila.Portada == null)
+                        {
+                            <img src="~/Content/images/emptyphoto.png" class="image-empty" />
+                        }
+                        else
+                        {
+                            <img src="@fila.Portada" class="image-table" />
+                        }
+                        @fila.NombreCancion
+                    </td>
+                    <td>@fila.NombreGenero</td>
+                    <td>@fila.Precio</td>
+                    <td>
+                        <a class="btn-buy" data-id="@fila.CodigoCancion,@fila.Precio">Comprar<i class="fa-solid fa-pencil"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<link rel="stylesheet" href="~/Content/css/table.css" />
+<link rel="stylesheet" href="~/Content/css/cruds.css" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $('#table-data').DataTable({
+            responsive: true,
+            language: {
+                info: 'Mostrando página _PAGE_ de _PAGES_',
+                infoEmpty: 'No hay registros',
+                lengthMenu: 'Mostrar _MENU_ registros por página',
+                zeroRecords: 'No hay registros',
+                search: 'Buscar'
+            },
+            pageLength: 5,
+            lengthMenu: [5, 10, 20, 50],
+            columns: [{ width: '4%' }, null, null, null, { width: '10%' }]
+        });
+
+
+    });
+</script>
+
+<script type="text/javascript">
+
+    let selectedRecords = [];
+    let Subtotal = 0;
+    let Total = 0;
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.btn-buy').forEach(button => {
+            button.addEventListener('click', () => {
+                button.style.backgroundColor = '#014';
+                const recordId = button.getAttribute('data-id');
+                const [dataId, precio, decimales] = recordId.split(',');
+                if (!selectedRecords.includes(dataId)) {
+                    selectedRecords.push(dataId);
+                }
+                const precioDecimal = `${precio}.${decimales}`;
+                Subtotal = Subtotal + parseFloat(precioDecimal);
+
+            });
+        });
+
+
+        document.getElementById('finalize-purchase').addEventListener('click', () => {
+            Total = Subtotal + (Subtotal * 0.13);
+            const fechaActual = new Date().toISOString();
+            document.querySelectorAll('.btn-buy').forEach(button => {
+                button.style.backgroundColor = '#1a5bed';
+            });
+            fetch('@Url.Action("Venta", "Venta")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': '@Html.AntiForgeryToken()'
+                },
+                body: JSON.stringify({ records: selectedRecords, subtotal: Subtotal, total: Total, fecha: fechaActual })
+               
+            }).then(response => response.json())
+                .then(data => {
+                    // Handle success response
+                    if (data.success) {
+                        selectedRecords = [];
+                        Subtotal = 0;
+                        Total = 0;
+                        // Perform client-side redirection
+                        window.location.href = data.redirectUrl;
+                    } else {
+                        console.error("Error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error occurred:", error);
+                });
+         
+        });
+    });
+</script>
+
+

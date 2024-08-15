@@ -24,7 +24,7 @@ namespace VentaMusicalApp.Controllers
             }
 
 
-            public async Task<ActionResult> Index()
+            public async Task<System.Web.Mvc.ActionResult> Index()
             {
 
                 try
@@ -51,13 +51,13 @@ namespace VentaMusicalApp.Controllers
                 return (IActionResult)View();
             }
 
-            public ActionResult Create()
+            public System.Web.Mvc.ActionResult Create()
             {
                 return View();
             }
 
-            [HttpPost]
-            public async Task<ActionResult> Create(GeneroAgregar generoAgregar)
+            [System.Web.Mvc.HttpPost]
+            public async Task<System.Web.Mvc.ActionResult> Create(GeneroAgregar generoAgregar)
             {
                 try
                 {
@@ -84,7 +84,7 @@ namespace VentaMusicalApp.Controllers
                 }
             }
 
-            public async Task<ActionResult> Edit(int id)
+            public async Task<System.Web.Mvc.ActionResult> Edit(int id)
             {
                 try
                 {
@@ -102,8 +102,8 @@ namespace VentaMusicalApp.Controllers
                 }
             }
 
-            [HttpPost]
-            public async Task<ActionResult> Edit(GeneroEditar generoEditar)
+            [System.Web.Mvc.HttpPost]
+            public async Task<System.Web.Mvc.ActionResult> Edit(GeneroEditar generoEditar)
             {
                 try
                 {
@@ -131,14 +131,14 @@ namespace VentaMusicalApp.Controllers
                 }
             }
 
-            public ActionResult Delete(int id)
+            public System.Web.Mvc.ActionResult Delete(int id)
             {
                 return View();
             }
 
-            [HttpPost]
+            [System.Web.Mvc.HttpPost]
             [ValidateAntiForgeryToken]
-            public ActionResult Delete(int id, IFormCollection collection)
+            public System.Web.Mvc.ActionResult Delete(int id, IFormCollection collection)
             {
                 try
                 {

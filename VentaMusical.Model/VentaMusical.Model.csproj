@@ -94,6 +94,7 @@
     <Compile Include="CancionDetalle.cs" />
     <Compile Include="CancionEditar.cs" />
     <Compile Include="DatosTarjeta.cs" />
+    <Compile Include="FacturaRequest.cs" />
     <Compile Include="Genero.cs" />
     <Compile Include="GeneroAgregar.cs" />
     <Compile Include="GeneroEditar.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Respuesta.cs" />
     <Compile Include="TipoTarjeta.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="Venta.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
