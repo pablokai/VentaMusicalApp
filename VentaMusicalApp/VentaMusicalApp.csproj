@@ -394,6 +394,7 @@
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Venta\Venta.cshtml" />
     <Content Include="Views\Venta\Factura.cshtml" />
+    <Content Include="Views\Home\PagoTarjeta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
