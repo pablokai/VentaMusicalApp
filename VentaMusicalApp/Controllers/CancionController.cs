@@ -9,6 +9,8 @@ using VentaMusical.Model;
 
 namespace VentaMusicalApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class CancionController : Controller
     {
         private readonly CancionBL cancionBL;
@@ -63,7 +65,7 @@ namespace VentaMusicalApp.Controllers
                     return View(cancion);
                 }
 
-                var conversion = base64Converter.ConvertIFormFileToBase64String(cancion.Archivo);
+                var conversion = base64Converter.ConvertHttpPostedFileToBase64String(cancion.Archivo);
                 var base64 = "data:image/jpeg;base64," + conversion;
                 Cancion nuevaCancion = new Cancion()
                 {
@@ -138,7 +140,7 @@ namespace VentaMusicalApp.Controllers
                     return View(cancion);
                 }
 
-                var conversion = base64Converter.ConvertIFormFileToBase64String(cancion.Archivo);
+                var conversion = base64Converter.ConvertHttpPostedFileToBase64String(cancion.Archivo);
                 var base64 = "data:image/jpeg;base64," + conversion;
                 Cancion nuevaCancion = new Cancion()
                 {

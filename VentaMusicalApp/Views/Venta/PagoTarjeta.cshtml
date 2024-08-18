@@ -1,0 +1,109 @@
+﻿@model VentaMusical.Model.PagoTarjeta
+
+
+<div class="mainscreen">
+    <!-- <img src="https://image.freepik.com/free-vector/purple-background-with-neon-frame_52683-34124.jpg"  class="bgimg " alt="">-->
+
+
+
+    <div class="card">
+
+
+        <div class="leftside">
+
+            <h1>Métodos de pago</h1>
+            <p id="subtitle">
+                Seleccione una opción
+            </p>
+      
+        </div>
+        <div class="rightside-methods">
+            @using (Html.BeginForm("PagoEfectivo", "Venta", FormMethod.Post))
+            {
+                <button class="button-method" type="submit" id="btn-efectivo"> Efectivo <i class="fa-solid fa-money-bill"></i></button>
+            }
+                <button class="button-method" data-bs-toggle="collapse" data-bs-target="#collapse-tarjeta" role="button" aria-expanded="false" aria-controls="collapse-tarjeta" 
+                        id="btn-tarjeta">Tarjeta <i class="fa-regular fa-credit-card"></i></button>
+            </div>
+    </div>
+
+    @using (Html.BeginForm("PagoTarjeta", "Venta", FormMethod.Post))
+    {
+        <div id="collapse-tarjeta" class="collapse">
+
+            <div class="card">
+                <div class="leftside">
+
+
+                    <h1>Pago con tarjeta</h1>
+
+                    <img src="~/Content/images/card-payment.svg"
+                         class="product"
+                         alt="Shoes" />
+                    <div class="card-icons">
+                        <i class="fa-brands fa-cc-visa fa-4x"></i>
+                        <i class="fa-brands fa-cc-mastercard fa-4x"></i>
+                    </div>
+                    <p class="subtitle" style="background: transparent;">
+                        *Los pagos con tarjeta aplican un 2% extra
+                    </p>
+                </div>
+                <div class="rightside">
+
+
+
+                    <h2>Datos de la tarjeta</h2>
+
+                    @Html.HiddenFor(u => u.TitularTarjeta)
+                    @Html.LabelFor(u => u.TitularTarjeta, new { @class = "label-form" })
+                    @Html.TextBoxFor(u => u.TitularTarjeta, new { @class = "input-data-form", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(u => u.TitularTarjeta)
+
+                    @Html.HiddenFor(u => u.NumeroTarjeta)
+                    @Html.LabelFor(u => u.NumeroTarjeta, new { @class = "label-form" })
+                    @Html.TextBoxFor(u => u.NumeroTarjeta, new { @class = "input-data-form", @id = "numeroTarjeta", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(u => u.NumeroTarjeta)
+
+                    @Html.LabelFor(u => u.NombreTarjeta, new { @class = "label-form" })
+                    @Html.TextBoxFor(u => u.NombreTarjeta, new { @class = "input-data-form", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(u => u.NombreTarjeta)
+
+                    <div class="details-group">
+                        @Html.LabelFor(u => u.FechaExpiracion, new { @class = "label-form" })
+                        @Html.TextBoxFor(u => u.FechaExpiracion, new { @class = "input-data-form", @type = "date" })
+                        @Html.ValidationMessageFor(u => u.FechaExpiracion)
+
+                        @Html.LabelFor(u => u.CVC, new { @class = "label-form" })
+                        @Html.TextBoxFor(u => u.CVC, new { @class = "input-data-form", @id = "cvv" })
+                        @Html.ValidationMessageFor(u => u.CVC)
+                    </div>
+
+
+                    <button type="submit" class="button">Pagar</button>
+
+                </div>
+            </div>
+        </div>
+     }
+</div>
+
+<link rel="stylesheet" href="~/Content/css/cardpayment.css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#numeroTarjeta").inputmask({ "mask": "9999 9999 9999 9999" });
+        $("#cvv").inputmask({ "mask": "999" });
+    });
+
+    //const form = document.querySelector("form");
+
+    //document.getElementById("btn-tarjeta")
+    //    .addEventListener("click", function (event) {
+    //        event.preventDefault();
+    //    });
+
+</script>
+
+
+

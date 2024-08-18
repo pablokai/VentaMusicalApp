@@ -1,6 +1,4 @@
-﻿hr {
-    color: #b3b3b3;
-}
+﻿
 
 .btn-add {
     padding: 10px 30px;
@@ -452,3 +450,84 @@ input[type=file] {
     cursor: pointer;
     margin-bottom: 2vh;
 }
+
+
+/*modal factura*/
+
+
+.modal-header {
+    border-bottom: none !important;
+    padding: 2vh 2vw;
+}
+
+.title-modal {
+    font-size: 20px;
+    margin-top: 1vh;
+}
+
+.title-modal i {
+    margin-right: 5px;
+}
+
+.modal-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1vh 1vw 0 ;
+}
+
+
+.profile_image{
+    width: 40px;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+
+.profile_logo {
+    width: 40px;
+
+}
+
+hr {
+    color: #b3b3b3;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.info-title {
+    font-size: 17px;
+    color: #b3b3b3;
+    font-weight: 500;
+}
+
+    .info-title span {
+        font-size: 15px;
+        color: #b3b3b3;
+        font-weight: 300;
+    }
+.modal-body{
+    padding-top: 0 !important;
+}
+
+.heading-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1vh 1vw;
+}
+
+
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1vh;
+    padding: 1vw;
+}
+
+.table-container {
+    padding: 1vh 1vw;
+}
+
+

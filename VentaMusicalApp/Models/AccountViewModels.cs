@@ -58,12 +58,53 @@ namespace VentaMusicalApp.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Recordarme")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Número de Identificación")]
+        public string NumeroIdentificacion { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage = "El {0} debe ser al menos de  {2}", MinimumLength = 3)]
+        [Display(Name = "Primer Nombre")]
+        public string PrimerNombre { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage = "El {0} debe ser al menos de  {2}", MinimumLength = 3)]
+        [Display(Name = "Segundo Nombre")]
+        public string SegundoNombre { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage = "El {0} debe ser al menos de  {2}", MinimumLength = 3)]
+        [Display(Name = "Primer Apellido")]
+        public string PrimerApellido { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage = "El {0} debe ser al menos de  {2}", MinimumLength = 3)]
+        [Display(Name = "Segundo Apellido")]
+        public string SegundoApellido { get; set; }
+
+        [Required]
+        [Display(Name = "Género")]
+        public string Genero { get; set; }
+
+        [Required]
+        [Display(Name = "Tipo de tarjeta")]
+        public int IdTipoTarjeta { get; set; }
+
+        [Required]
+        [Display(Name = "Número de tarjeta")]
+        public string NumeroTarjeta { get; set; }
+
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Rol")]
+        public string Rol { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -72,12 +113,13 @@ namespace VentaMusicalApp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
+
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirme la contraseña")]
+        [Compare("Password", ErrorMessage = "Las contraseñas no coinciden")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -87,7 +129,6 @@ namespace VentaMusicalApp.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

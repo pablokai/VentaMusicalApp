@@ -26,5 +26,13 @@ namespace VentaMusicalApp.Controllers
 
             return View();
         }
+
+        public ActionResult PagoTarjeta()
+        {
+
+            return View();
+        }
+
+
     }
 }

@@ -80,6 +80,7 @@
     <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -93,11 +94,16 @@
     <Compile Include="CancionDetalle.cs" />
     <Compile Include="CancionEditar.cs" />
     <Compile Include="DatosTarjeta.cs" />
+    <Compile Include="FacturaRequest.cs" />
     <Compile Include="Genero.cs" />
     <Compile Include="GeneroAgregar.cs" />
     <Compile Include="GeneroEditar.cs" />
+    <Compile Include="PagoTarjeta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respuesta.cs" />
+    <Compile Include="TipoTarjeta.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="Venta.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

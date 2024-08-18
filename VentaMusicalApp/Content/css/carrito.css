@@ -1,6 +1,4 @@
-﻿hr {
-    color: #b3b3b3;
-}
+﻿
 
 .btn-add {
     padding: 10px 30px;
@@ -12,8 +10,8 @@
     font-weight: 600;
     transition: 0.5s;
     transition-property: background;
-    color:white !important;
-    cursor:pointer;
+    color: white !important;
+    cursor: pointer;
 }
 
     .btn-add:hover {
@@ -53,8 +51,8 @@
 }
 
     .btn-buy:hover {
-    background: #132347;
-    color: white;
+        background: #132347;
+        color: white;
     }
 
 .btn-fin {
@@ -77,11 +75,40 @@
         color: white;
     }
 
+.btn-cart {
+    padding: 10px 20px;
+    background: white;
+    text-decoration: none;
+    border-radius: 25px;
+    border: solid white;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.5s;
+    transition-property: background;
+    color: #212121 ;
+    cursor: pointer;
+    margin: 1vh;
+}
 
-    .btn-edit:hover {
-        background: #132347;
-        color: white;
+    .btn-cart i {
+        color: #212121 !important;
     }
+
+
+    .btn-cart:hover {
+        color: white !important;
+        background-color: #121212
+    }
+        .btn-cart:hover i {
+            color: white !important;
+        }
+
+
+
+.btn-edit:hover {
+    background: #132347;
+    color: white;
+}
 
 .btn-delete {
     padding: 10px 20px;
@@ -102,21 +129,21 @@
         color: white;
     }
 
-.btn-container{
+.btn-container {
     padding: 2vh 0 4vh 0;
 }
 
 
-i{
+i {
     color: white !important;
     padding-left: 10px;
 }
 
-.title{
+.title {
     font-weight: 600;
     color: white;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -125,7 +152,7 @@ i{
         font-weight: 400;
         color: white;
         font-size: 15px;
-        margin-right: 10px; 
+        margin-right: 10px;
     }
 
 /*override de largo para esta tabla*/
@@ -153,11 +180,13 @@ i{
         background: #212121;
         color: white !important;
     }
+
     .btn-return i {
         color: #212121 !important;
         padding-right: 10px;
     }
-    .btn-return:hover i{
+
+    .btn-return:hover i {
         color: white !important;
     }
 
@@ -165,18 +194,18 @@ i{
     padding: 2vh 0;
 }
 
-.btn-group-container input{
-    width: 30%;
-}
+    .btn-group-container input {
+        width: 30%;
+    }
 
 .title-group {
     font-weight: 600;
     color: white;
     display: flex;
     align-items: flex-start;
-    gap:14px;
+    gap: 14px;
     padding: 1vh 0px;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 .label-form {
@@ -185,7 +214,6 @@ i{
     display: block;
     padding-bottom: 1vh;
     padding-left: 1vw;
-
 }
 
 .input-data-form {
@@ -307,12 +335,11 @@ input[type=file] {
 .drop-title {
     color: #b3b3b3;
     font-size: 20px;
-
     text-align: center;
     transition: color .2s ease-in-out;
 }
 
-.image-upload{
+.image-upload {
     width: 70px;
     height: 70px;
     object-fit: contain;
@@ -325,9 +352,9 @@ input[type=file] {
     width: 30%;
     justify-content: space-between;
     background-color: #2A2A2A;
-    padding:  15px 15px;
+    padding: 15px 15px;
     border-radius: 20px;
-    margin-bottom:  2vh;
+    margin-bottom: 2vh;
 }
 
     .song-container h1 {
@@ -336,8 +363,8 @@ input[type=file] {
         margin-left: 1vw;
     }
 
-.songcover{
-    border-radius:  20px;
+.songcover {
+    border-radius: 20px;
     width: 150px;
     height: 150px;
 }
@@ -415,6 +442,7 @@ input[type=file] {
 .login-section {
     width: 50%;
 }
+
 .label-form-users {
     font-weight: 500;
     color: #b3b3b3;
@@ -451,4 +479,89 @@ input[type=file] {
     color: #b3b3b3;
     cursor: pointer;
     margin-bottom: 2vh;
+}
+
+
+/*modal factura*/
+
+
+.modal-header {
+    border-bottom: none !important;
+    padding: 2vh 2vw;
+}
+
+.title-modal {
+    font-size: 20px;
+    margin-top: 1vh;
+}
+.title-modal i {
+    margin-right: 5px;
+}
+
+.modal-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1vh 1vw ;
+    background-color: #1a5bed;
+    margin: 1vh 1.5vw ;
+    margin-top: 0;
+    border-radius: 10px;
+}
+
+.modal-width {
+    max-width: 40%; 
+}
+
+.profile_image {
+    width: 40px;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+
+.profile_logo {
+    width: 40px;
+}
+
+hr {
+    color: #b3b3b3;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.info-title {
+    font-size: 17px;
+    color: #b3b3b3;
+    font-weight: 500;
+}
+
+    .info-title span {
+        font-size: 15px;
+        color: #b3b3b3;
+        font-weight: 300;
+    }
+
+.modal-body {
+    padding-top: 0 !important;
+}
+
+.heading-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1vh 1vw;
+}
+
+
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1vh;
+    padding: 1vw;
+}
+
+.table-container {
+    padding: 1vh 1vw;
 }
