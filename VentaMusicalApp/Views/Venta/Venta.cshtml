@@ -1,13 +1,52 @@
 ﻿@model List<VentaMusical.Model.Cancion>
 
+<div class="modal fade " id="myModal" role="dialog">
+    <div class="modal-dialog modal-width">
+        <div class="modal-content" style="background-color: #121212;">
+            <div class="modal-header">
+                <img src="~/Content/images/nota-musical.png" class="profile_logo" alt="">
+                <h2 class="title-modal"  style="margin-left:1vw">Venta Musical App</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-heading">
+                <h2 class="title-modal"><i class="fa-solid fa-cart-shopping"></i> Carrito</h2>
+            </div>
+            <div class="modal-body">
 
-<div class="title">
-    <h1>Canciones</h1>
-    <div class="btn-container">
-        <button class="btn-fin" id="finalize-purchase">Finalizar Compra</button>
+                <hr style="width: 95%;" />
+
+                <div class="table-container">
+                    <table id="table-carrito" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id de Cancion</th>
+                                <th>Nombre Canción</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr style="width: 95%;" />
+                <div class="bottom-section">
+                    <h3 class="info-title">SubTotal: <span id="subtotal-carrito"> </span></h3>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
-<hr class="divider" />
+
+<div class="title">
+        <h1>Compra de canciones</h1>
+    <div class="btn-container">
+        <button class="btn-fin" id="finalize-purchase">Finalizar Compra <i class="fa-solid fa-chevron-right"></i></button>
+        <button class="btn-cart" id="shopping-cart">Ver carrito <i class="fa-solid fa-cart-shopping"></i></button>
+    </div>
+</div>
+<hr class="divider" style="width:100%;" />
 
 <div class="table-container">
     <table id="table-data" class="display nowrap" style="width:100%">
@@ -39,7 +78,7 @@
                     <td>@fila.NombreGenero</td>
                     <td>@fila.Precio</td>
                     <td>
-                        <a class="btn-buy" data-id="@fila.CodigoCancion,@fila.Precio">Comprar<i class="fa-solid fa-pencil"></i></a>
+                        <a class="btn-buy" data-id="@fila.CodigoCancion,@fila.Precio">Comprar<i class="fa-solid fa-plus"></i></a>
                     </td>
                 </tr>
             }
@@ -52,13 +91,37 @@
 
 <link rel="stylesheet" href="~/Content/css/table.css" />
 <link rel="stylesheet" href="~/Content/css/cruds.css" />
+<link rel="stylesheet" href="~/Content/css/carrito.css" />
 
 
 <script type="text/javascript">
+
+    let selectedRecords = [];
+    let Subtotal = 0;
+    let Total = 0;
+    let carrito;
+    let canciones;
+
     $(document).ready(function () {
+        $('#myModal').modal('hide');
+
+        //tablas
+        canciones = $('#table-data').DataTable({
+            responsive: true,
+            language: {
+                info: 'Mostrando página _PAGE_ de _PAGES_',
+                infoEmpty: 'No hay registros',
+                lengthMenu: 'Mostrar _MENU_ registros por página',
+                zeroRecords: 'No hay registros',
+                search: 'Buscar'
+            },
+            pageLength: 10,
+            lengthMenu: [5, 10, 20, 50],
+            columns: [{ width: '4%' }, null, null, null, { width: '10%' }]
+        });
 
 
-        $('#table-data').DataTable({
+        carrito = $('#table-carrito').DataTable({
             responsive: true,
             language: {
                 info: 'Mostrando página _PAGE_ de _PAGES_',
@@ -69,31 +132,51 @@
             },
             pageLength: 5,
             lengthMenu: [5, 10, 20, 50],
-            columns: [{ width: '4%' }, null, null, null, { width: '10%' }]
+            columns: [
+                { title: 'IdCancion', width:'3%' },
+                { title: 'NombreCancion' },
+                { title: 'PrecioCancion' }
+            ]
         });
 
 
     });
-</script>
-
-<script type="text/javascript">
-
-    let selectedRecords = [];
-    let Subtotal = 0;
-    let Total = 0;
 
 
     document.addEventListener('DOMContentLoaded', () => {
+
+        //eventos
+
         document.querySelectorAll('.btn-buy').forEach(button => {
             button.addEventListener('click', () => {
-                button.style.backgroundColor = '#014';
+
                 const recordId = button.getAttribute('data-id');
                 const [dataId, precio, decimales] = recordId.split(',');
-                if (!selectedRecords.includes(dataId)) {
-                    selectedRecords.push(dataId);
+
+
+                if (selectedRecords.includes(dataId)) {
+                    //estilos
+                    console.log(selectedRecords, 'original')
+
+                    button.style.backgroundColor = '#1a5bed';
+                    button.style.borderColor = '#1a5bed';
+                    button.innerHTML = 'Comprar <i class="fa-solid fa-plus"></i>';
+                    selectedRecords = selectedRecords.filter(function (item) {
+                        return item !== dataId;
+                    });
+                    console.log(selectedRecords,'borrado')
+                } else {
+                    //estilos
+                    button.style.backgroundColor = '#057A55';
+                    button.style.borderColor = '#057A55';
+                    button.innerHTML = 'Agregado <i class="fa-solid fa-check"></i>'
+
+                    if (!selectedRecords.includes(dataId)) {
+                        selectedRecords.push(dataId);
+                    }
+                    const precioDecimal = `${precio}.${decimales}`;
+                    Subtotal = Subtotal + parseFloat(precioDecimal);
                 }
-                const precioDecimal = `${precio}.${decimales}`;
-                Subtotal = Subtotal + parseFloat(precioDecimal);
 
             });
         });
@@ -103,7 +186,7 @@
             Total = Subtotal + (Subtotal * 0.13);
             const fechaActual = new Date().toISOString();
             document.querySelectorAll('.btn-buy').forEach(button => {
-                button.style.backgroundColor = '#1a5bed';
+                button.style.backgroundColor = '#0E9F6E';
             });
             fetch('@Url.Action("Venta", "Venta")', {
                 method: 'POST',
@@ -112,15 +195,12 @@
                     'RequestVerificationToken': '@Html.AntiForgeryToken()'
                 },
                 body: JSON.stringify({ records: selectedRecords, subtotal: Subtotal, total: Total, fecha: fechaActual })
-               
+
             }).then(response => response.json())
                 .then(data => {
-                    // Handle success response
                     if (data.success) {
                         selectedRecords = [];
                         Subtotal = 0;
-                        Total = 0;
-                        // Perform client-side redirection
                         window.location.href = data.redirectUrl;
                     } else {
                         console.error("Error: " + data.message);
@@ -129,7 +209,34 @@
                 .catch(error => {
                     console.error("Error occurred:", error);
                 });
-         
+
+        });
+        //carrito
+        document.querySelectorAll('.btn-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                var cancionesLista = canciones.rows().data().toArray();
+                var itemsCarrito = [];
+
+                cancionesLista.forEach(x=> {
+
+                    var row = $(this);
+                    var celdaId = x[0];
+                    var celdaNombre = x[1];  
+                    var celdaPrecio = x[3];  
+
+                    if (selectedRecords.includes(celdaId)) {
+                        var item = [  celdaId, celdaNombre, celdaPrecio ];
+                        itemsCarrito.push(item);
+                    //    $("#table-carrito tbody").append("<tr> <td> " + celdaId + "</td><td>" + celdaNombre + "</td> <td>"+celdaPrecio+"</td> </tr>")
+                    }
+                });
+
+                carrito.clear().rows.add(itemsCarrito).draw();
+                $("#subtotal-carrito").text(Subtotal.toFixed(2));
+
+                $('#myModal').modal('show');
+
+            });
         });
     });
 </script>

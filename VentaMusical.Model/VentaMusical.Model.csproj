@@ -98,6 +98,7 @@
     <Compile Include="Genero.cs" />
     <Compile Include="GeneroAgregar.cs" />
     <Compile Include="GeneroEditar.cs" />
+    <Compile Include="PagoTarjeta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respuesta.cs" />
     <Compile Include="TipoTarjeta.cs" />

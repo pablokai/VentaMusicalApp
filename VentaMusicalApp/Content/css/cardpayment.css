@@ -1,20 +1,28 @@
 ﻿.mainscreen {
-    min-height: 70vh;
+    min-height: 20vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     color: #963E7B;
 }
 
-.card {
+#subtitle {
+    background: #121212;
+    margin : 0;
+    padding: 0;
+    text-align: left;
+}
+
+.card{
     width: 60rem;
     margin: 0 auto;
     align-self: center;
     border-radius: 1.5rem;
-/*    box-shadow: 4px 3px 20px #1a5bed;
-*/    display: flex;
+    /*    box-shadow: 4px 3px 20px #1a5bed;
+*/ display: flex;
     flex-direction: row;
     border-color: transparent !important;
+    margin-top: 1vh;
 }
 
 .leftside {
@@ -67,12 +75,48 @@
         padding: 1vh 1vw;
     }
 
-p {
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: .8rem 0;
+.rightside-methods {
+    background-color: #121212;
+    width: 35rem;
+    border-bottom-right-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    padding: 2rem 0rem 3rem 0rem;
+    display: flex;
 }
+
+.rightside-methods form{
+    width: 100%;
+}
+
+.button-method {
+    background: #1a5bed;
+    padding: 10px;
+    border: solid #1a5bed;
+    border-radius: 50px;
+    color: white;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    width: 80%;
+    margin-right: 2vw;
+}
+
+    .button-method:hover {
+        background: #132347;
+        border: solid #1a5bed;
+    }
+
+    .button-method i{
+        margin: 1vh 5px;
+    }
+
+
+    p {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin: .8rem 0;
+    }
 
 .inputbox {
     color: #030303;
@@ -167,7 +211,8 @@ p {
 
 
 @media only screen and (max-width: 1000px) {
-    .card {
+
+    .card{
         flex-direction: column;
         width: auto;
     }

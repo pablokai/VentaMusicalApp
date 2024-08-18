@@ -29,5 +29,10 @@ namespace VentaMusical.BusinessLogic
             return await ventaDA.InsertarVenta(venta);
         }
 
+        public async Task<Respuesta<PagoTarjeta>> GuardarDatosTarjeta(PagoTarjeta pagoTarjeta)
+        {
+            return await ventaDA.GuardarDatosTarjeta(pagoTarjeta);
+        }
+
     }
 }

@@ -1,22 +1,32 @@
 ﻿@model List<VentaMusical.Model.Venta>
 
-
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: #121212;">
             <div class="modal-header">
-                <h2 class="modal-title">FACTURA</h2>
+                <img src="~/Content/images/nota-musical.png" class="profile_logo" alt="">
+                <h2 class="title-modal" style="margin-left:1vw">Venta Musical App</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <hr />
+            <div class="modal-heading">
+                @*<img src="~/Content/images/factura.png" class="profile_image" alt="">*@
+                <h2 class="title-modal"><i class="fa-solid fa-file-invoice"></i> Factura</h2>
             </div>
             <div class="modal-body">
 
-                <H3>Fecha: @ViewBag.FechaFactura</H3>
-                <H3>Consecutivo: @ViewBag.NumFac</H3>
+                <div class="heading-section">
+                    <div>
+                        <h3 class="info-title">Fecha: <span>@ViewBag.FechaFactura</span></h3>
+                        <h3 class="info-title">Consecutivo: <span> # @ViewBag.NumFac</span></h3>
+                    </div>
+                    <div>
+                        <h3 class="info-title">Cedula: <span>@ViewBag.Identificacion</span></h3>
+                        <h3 class="info-title">Nombre: <span>@ViewBag.NombreUsuario</span></h3>
+                    </div>
+                </div>
 
-
-                <H3>Facturar a</H3>
-                <H3>Cedula: @ViewBag.Identificacion</H3>
-                <H3>Nombre: @ViewBag.NombreUsuario</H3>
+                <hr style="width: 95%;" />
 
                 <div class="table-container">
                     <table id="table-data" class="display nowrap" style="width:100%">
@@ -28,6 +38,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach (var fila in Model)
                             {
                                 <tr>
@@ -38,13 +49,17 @@
                                 </tr>
                             }
 
+
                         </tbody>
                     </table>
                 </div>
 
-                <H3>Subtotal: @ViewBag.SubTotal</H3>
-                <H3>Total: @ViewBag.Total</H3>
-
+                <hr style="width: 95%;" />
+                <div class="bottom-section">
+                    <h3 class="info-title">IVA: <span> 13%</span></h3>
+                    <h3 class="info-title">Subtotal: <span>@ViewBag.SubTotal</span></h3>
+                    <h3 class="info-title">Total: <span> @ViewBag.Total</span></h3>
+                </div>
 
                 <div class="modal-footer">
                     <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Venta/Venta/")'">
@@ -55,6 +70,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script type="text/javascript">
@@ -71,7 +87,7 @@
                 search: 'Buscar'
             },
             pageLength: 3,
-            lengthMenu: [3,5,10],
+            lengthMenu: [3, 5, 10],
             columns: [{ width: '2px' }, { width: '4%' }, { width: '4%' }]
         });
 
@@ -83,6 +99,8 @@
 
 <link rel="stylesheet" href="~/Content/css/table.css" />
 <link rel="stylesheet" href="~/Content/css/cruds.css" />
+<link rel="stylesheet" href="~/Content/css/factura.css" />
+
 
 <script type="text/javascript">
     $(document).ready(function () {

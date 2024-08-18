@@ -309,6 +309,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\carrito.css" />
+    <Content Include="Content\css\factura.css" />
     <Content Include="Content\css\register.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\cardpayment.css" />
@@ -321,6 +323,7 @@
     <Content Include="Content\images\credit-card.svg" />
     <Content Include="Content\images\empty.png" />
     <Content Include="Content\images\emptyphoto.png" />
+    <Content Include="Content\images\factura.png" />
     <Content Include="Content\images\login.jpg" />
     <Content Include="Content\images\login.svg" />
     <Content Include="Content\images\music.svg" />
@@ -394,7 +397,7 @@
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Venta\Venta.cshtml" />
     <Content Include="Views\Venta\Factura.cshtml" />
-    <Content Include="Views\Home\PagoTarjeta.cshtml" />
+    <Content Include="Views\Venta\PagoTarjeta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

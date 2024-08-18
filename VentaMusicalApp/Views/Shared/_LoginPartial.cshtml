@@ -32,11 +32,11 @@
                     {
                         <li class="item">
                             <i class="fa-solid fa-guitar"></i>
-                            @Html.ActionLink("Genero", "Index", "Genero")
+                            @Html.ActionLink("Generos", "Index", "Genero")
                         </li>
                         <li class="item">
                             <i class="fa-solid fa-music"></i>
-                            @Html.ActionLink("Cancion", "Index", "Cancion")
+                            @Html.ActionLink("Canciones", "Index", "Cancion")
                         </li>
                         <li class="item">
                             <i class="fa-solid fa-user"></i>
@@ -73,15 +73,19 @@
                 {
                     <li class="item">
                         <i class="fa-solid fa-guitar"></i>
-                        @Html.ActionLink("Genero", "Index", "Genero")
+                        @Html.ActionLink("Géneros", "Index", "Genero")
                     </li>
                     <li class="item">
                         <i class="fa-solid fa-music"></i>
-                        @Html.ActionLink("Cancion", "Index", "Cancion")
+                        @Html.ActionLink("Canciones", "Index", "Cancion")
                     </li>
                     <li class="item">
                         <i class="fa-solid fa-user"></i>
                         @Html.ActionLink("Usuarios", "Index", "Usuario")
+                    </li>
+                    <li class="item">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        @Html.ActionLink("Comprar", "Venta", "Venta")
                     </li>
                 }
                 else
@@ -90,11 +94,12 @@
                         <i class="fa-solid fa-user"></i>
                         @Html.ActionLink("Perfil", "Edit", "Usuario", new { id = @User.Identity.GetUserId() }, null)
                     </li>
+                    <li class="item">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        @Html.ActionLink("Comprar", "Venta", "Venta")
+                    </li>
                 }
-                <li class="item">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    @Html.ActionLink("Comprar", "Venta", "Venta")
-                </li>
+
             </ul>
         </div>
 

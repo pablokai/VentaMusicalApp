@@ -107,15 +107,19 @@ namespace VentaMusicalApp.Controllers
                 {
                     return View(model);
                 }
-
-                var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.Password);
-                if (!result.Succeeded)
+                var rol = UserManager.GetRoles(User.Identity.GetUserId()).FirstOrDefault();
+                if (rol == "User")
                 {
-                    ViewBag.ValorMensaje = 1;
-                    ViewBag.MensajeProceso = "Error al editar el usuario " + result.Errors.FirstOrDefault();
-                    return View(model);
+                    var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.Password);
+                    if (!result.Succeeded)
+                    {
+                        ViewBag.ValorMensaje = 1;
+                        ViewBag.MensajeProceso = "Error al editar el usuario " + result.Errors.FirstOrDefault();
+                        return View(model);
 
+                    }
                 }
+
                 Usuario nuevoUsuario = new Usuario()
                 {
                     Id = model.Id,

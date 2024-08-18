@@ -12,8 +12,8 @@
                 <div class="modal-body">
                     <div class="alert alert-danger">@ViewBag.MensajeProceso</div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'">
+                <div class="modal-footer">                  
+                    <button type="button"  class="btn-return" data-bs-dismiss="modal" aria-label="Close">
                         Cerrar
                     </button>
                 </div>
@@ -35,9 +35,19 @@ else if (ViewBag.ValorMensaje == 0)
                     <div class="alert alert-success">@ViewBag.MensajeProceso</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'">
-                        Cerrar
-                    </button>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'">
+                            Cerrar
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" data-bs-dismiss="modal" class="btn-return" onclick="document.location.href='@Url.Content("~/Welcome/Index/")'">
+                            Cerrar
+                        </button>
+                    }
+                   
                 </div>
             </div>
         </div>
@@ -49,7 +59,14 @@ else if (ViewBag.ValorMensaje == 0)
 <div class="row">
 
     <div class="title-group">
-        <a class="btn-back" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'"><i class="fa-solid fa-chevron-left"></i>Volver</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn-back" onclick="document.location.href='@Url.Content("~/Usuario/Index/")'"><i class="fa-solid fa-chevron-left"></i>Volver</a>
+        }
+        else
+        {
+            <a class="btn-back" onclick="document.location.href='@Url.Content("~/Welcome/Index/")'"><i class="fa-solid fa-chevron-left"></i>Volver</a>
+        }
         <h1>Editar Usuario</h1>
     </div>
     <hr class="divider" />
@@ -108,7 +125,7 @@ else if (ViewBag.ValorMensaje == 0)
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(u => u.IdTipoTarjeta, new { @class = "label-form-users" })                    
+                @Html.LabelFor(u => u.IdTipoTarjeta, new { @class = "label-form-users" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(m => m.NumeroTarjeta, new { @class = "input-data-form-users", @id = "numeroTarjeta" })
                 </div>
@@ -125,27 +142,29 @@ else if (ViewBag.ValorMensaje == 0)
                     @Html.ValidationMessageFor(u => u.IdTipoTarjeta)
                 </div>
             </div>
+            @if (User.IsInRole("User"))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OldPassword, new { @class = "col-md-2 label-form-users" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.OldPassword, new { @class = "input-data-form-users" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 label-form-users" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "input-data-form-users" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 label-form-users" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-data-form-users" })
+                    </div>
+                </div>
+            }
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.OldPassword, new { @class = "col-md-2 label-form-users" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.OldPassword, new { @class = "input-data-form-users" })
-                </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 label-form-users" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password, new { @class = "input-data-form-users" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 label-form-users" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-data-form-users" })
-                </div>
-            </div>
-
-        </div>
 
     </div>
     <br />

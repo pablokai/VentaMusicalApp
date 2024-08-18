@@ -72,7 +72,7 @@ namespace VentaMusicalApp.Controllers
                     CodigoGenero = cancion.CodigoGenero,
                     NombreCancion = cancion.NombreCancion,
                     Precio = cancion.Precio,
-                    Portada = "",
+                    Portada = base64,
                 };
                 var respuesta = await cancionBL.InsertarCancion(nuevaCancion);
 

@@ -56,8 +56,8 @@ namespace VentaMusical.DataAccess
 
                 parameters.Add("@idUsuario", venta.IdUsuario, System.Data.DbType.String);
                 parameters.Add("@idCanciones", idsCanciones, System.Data.DbType.String);
-                parameters.Add("@Total", venta.Total, System.Data.DbType.Int32);
-                parameters.Add("@Subtotal", venta.SubTotal, System.Data.DbType.Int32);
+                parameters.Add("@Total", venta.Total, System.Data.DbType.Decimal);
+                parameters.Add("@Subtotal", venta.SubTotal, System.Data.DbType.Decimal);
 
                 parameters.Add("@Estado", dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
                 parameters.Add("@Mensaje", dbType: System.Data.DbType.String, direction: System.Data.ParameterDirection.Output, size: 250);
@@ -91,6 +91,45 @@ namespace VentaMusical.DataAccess
             catch (Exception ex)
             {
                 throw ex;
+            }
+
+            return respuesta;
+        }
+
+        public async Task<Respuesta<PagoTarjeta>> GuardarDatosTarjeta(PagoTarjeta pago)
+        {
+            Respuesta<PagoTarjeta> respuesta = new Respuesta<PagoTarjeta>();
+            try
+            {
+                var connection = connectionManager.GetConnection();
+
+                var parameters = new DynamicParameters();
+
+                parameters.Add("@NumeroTarjeta", pago.NumeroTarjeta, System.Data.DbType.String);
+                parameters.Add("@FechaExpiracion", pago.FechaExpiracion, System.Data.DbType.DateTime);
+                parameters.Add("@CVC", pago.CVC, System.Data.DbType.Int32);
+                parameters.Add("@IdUsuario", pago.IdUsuario, System.Data.DbType.String);
+                parameters.Add("@IdTipoTarjeta", pago.IdTipoTarjeta, System.Data.DbType.Int32);
+                parameters.Add("@NumFactura", pago.NumeroFactura, System.Data.DbType.Decimal);
+
+
+                parameters.Add("@Estado", dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
+                parameters.Add("@Mensaje", dbType: System.Data.DbType.String, direction: System.Data.ParameterDirection.Output, size: 250);
+
+
+                var result = await connection.QueryAsync<Respuesta<PagoTarjeta>>(
+                    sql: "usp_GuardarDatosTarjeta",
+                    param: parameters,
+                    commandType: System.Data.CommandType.StoredProcedure);
+
+                respuesta = result.FirstOrDefault();
+
+
+
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
             return respuesta;
